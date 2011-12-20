@@ -12,7 +12,7 @@ class SqlParser
   params = matches[3].split(',')
   new_sql = "BEGIN\n"
 
-  params.each {|p| new_sql += "\nDECLARE #{p.strip};"}
+  params.each {|p| new_sql += "DECLARE #{p.strip};"}
 
   param_values = matches[4].split(',')
   new_sql += "\n"
@@ -22,7 +22,7 @@ class SqlParser
   result = Net::HTTP.post_form(URI.parse("http://sqlformat.appspot.com/format/"), 
   	{"data" => matches[2].to_s.gsub(/''/,"'"), "format" => "text", "keyword_case" => "upper", "reindent" => "true", "n_indents" => "2"})
 	
-  new_sql += "\n" + result.body
+  new_sql += "\n\n" + (result.code == 200 ? body : matches[2].to_s.gsub(/''/,"'")) + "\nEND"
    
   new_sql
    
