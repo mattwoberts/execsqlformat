@@ -1,0 +1,8 @@
+body {background-color:#DDD;margin:10px 20px;font-family:courier;}
+h2 {font-size:1.2em;}
+#results {font-size:0.9em; padding:10px; 
+		 line-height:1.4; background-color:white; 
+		 margin:10px 20px 50px 20px; 
+		 -moz-box-shadow: 10px 10px 5px #888;
+		-webkit-box-shadow: 10px 10px 5px #888;
+		box-shadow: 10px 10px 5px #888;}

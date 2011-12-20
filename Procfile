@@ -1,0 +1,1 @@
+web: bundle exec ruby sqlparse.rb -p $PORT

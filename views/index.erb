@@ -1,0 +1,16 @@
+<!html>
+<head>
+  <link rel="stylesheet" href="main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+  <h1>sp_executesql formatter</h1>
+  <h2>Format those annoying sp_executesql statements into something a bit easier to work with</h2>
+  <form action="/doit" method="post" accept-charset="utf-8">
+    <label for="sql_to_format">Let's do this thing</label><br/>
+    <textarea name="sql_to_format" rows="15" cols="100"><%= @orig_sql %></textarea>
+    <input type="submit" name="submit_button" value="Do it" id="submit_button">
+  </form>
+  <div id="results">
+    <%= @formatted_sql %>
+  </div>
+</body>
