@@ -5,7 +5,7 @@ class SqlParser
  end
 
  def parse
-  matches = /exec\s+sp_executesql\s+N'([\s\S]*)',N'(@[\s|\S]*?)',([\s|\S]*)/.match(@sql_to_parse)
+  matches = /exec\s+sp_executesql\s+N'([\s\S]*)',\s*N'(@[\s|\S]*?)',([\s|\S]*)/.match(@sql_to_parse)
 
   return "" unless matches != nil
   
