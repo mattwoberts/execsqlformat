@@ -1,8 +1,10 @@
-body {background-color:#DDD;margin:10px 20px;font-family:courier;}
+body {background-color:#709DD5;margin:10px 20px;font-family:courier;}
 h2 {font-size:1.2em;}
-#results {font-size:0.9em; padding:10px; 
+#results {display:none; font-size:0.9em; padding:10px; 
 		 line-height:1.4; background-color:white; 
-		 margin:10px 20px 50px 20px; 
-		 -moz-box-shadow: 10px 10px 5px #888;
-		-webkit-box-shadow: 10px 10px 5px #888;
-		box-shadow: 10px 10px 5px #888;}
+		 margin:10px 0px 50px 0px; 
+		 -moz-box-shadow: 10px 10px 5px #384e69;
+		-webkit-box-shadow: 10px 10px 5px #384e69;
+		box-shadow: 10px 10px 5px #384e69;}
+.red {color: red;}
+.green {color: green;}

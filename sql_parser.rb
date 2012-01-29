@@ -4,10 +4,14 @@ class SqlParser
    @sql_to_parse = sql_to_parse
  end
 
- def parse
-  matches = /(exec)*\s*sp_executesql\s+N'([\s\S]*)',\s*N'(@[\s|\S]*?)',\s*([\s|\S]*)[;\z]/.match(@sql_to_parse)
+ attr_accessor :parsed_sql
 
-  return "" unless matches != nil
+ def parse
+  matches = /(exec)*\s*sp_executesql\s+N'([\s\S]*)',\s*N'(@[\s\S]*?)',\s*([\s\S]*)/.match(@sql_to_parse)
+
+  @parsed_sql = @sql_to_parse
+
+  return false unless matches != nil
   
   params = matches[3].split(',')
   new_sql = "BEGIN\n"
@@ -24,7 +28,8 @@ class SqlParser
 	
   new_sql += "\n\n" + (result.code == 200 ? body : matches[2].to_s.gsub(/''/,"'")) + "\nEND"
    
-  new_sql
+  @parsed_sql = new_sql
+  true
    
  end
 

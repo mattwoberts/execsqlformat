@@ -6,6 +6,7 @@ require_relative 'sql_parser'
 
 get '/' do
   @formatted_sql = ''
+  @sql_valid = false
   erb :index
 end
 
@@ -22,8 +23,9 @@ post '/doit' do
   sql_statement = request['sql_to_format']
 
   parser = SqlParser.new(sql_statement)
-  new_sql = parser.parse()
+  @sql_valid = parser.parse()
 
+  new_sql = parser.parsed_sql
   new_sql = new_sql.gsub(/ /,'&nbsp;')
   new_sql = new_sql.gsub(/\n/,'<br/>')
   

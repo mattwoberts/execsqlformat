@@ -1,16 +1,45 @@
 <!html>
 <head>
   <link rel="stylesheet" href="main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="ZeroClipboard.js"></script>
 </head>
 <body>
   <h1>sp_executesql formatter</h1>
   <h2>Format those annoying sp_executesql statements into something a bit easier to work with</h2>
   <form action="/doit" method="post" accept-charset="utf-8">
-    <label for="sql_to_format">Let's do this thing</label><br/>
-    <textarea name="sql_to_format" rows="15" cols="100"><%= @orig_sql %></textarea>
-    <input type="submit" name="submit_button" value="Do it" id="submit_button">
+    <label for="sql_to_format">Paste your "sp_executesql" code into the box..</label><br/>
+    <textarea name="sql_to_format" rows="15" cols="150"><%= @orig_sql %></textarea><br/>
+    <input type="submit" name="submit_button" value="Format it.." id="submit_button">
   </form>
-  <div id="results">
-    <%= @formatted_sql %>
+
+  <div id="d_clip_container" style="position:relative;display:none">
+   <input type="button" id="d_clip_button" value="Copy to Clipboard"/>
   </div>
+  <div id="results"><%= @formatted_sql %></div>
 </body>
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    
+    if ($('#results').html().length > 0) {
+      console.log($('#results').html().length);
+      $('#results').show();
+      $('#d_clip_container').show();
+    }
+
+    if (<%= @sql_valid %>) {
+      $('#results').removeClass('red').addClass('green');
+    } else {
+      $('#results').removeClass('green').addClass('red');
+    }
+
+    var clip = new ZeroClipboard.Client();
+    clip.setText($('#results').text());
+    clip.setHandCursor( true );
+    clip.glue( 'd_clip_button', 'd_clip_container' );
+
+  });
+
+</script>
