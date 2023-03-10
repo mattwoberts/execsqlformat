@@ -2,7 +2,6 @@
 <head>
   <link rel="stylesheet" href="main.css" type="text/css" media="screen" title="no title" charset="utf-8">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="ZeroClipboard.js"></script>
 </head>
 <body>
   <h1>sp_executesql formatter</h1>
@@ -35,11 +34,12 @@
       $('#results').removeClass('green').addClass('red');
     }
 
-    var clip = new ZeroClipboard.Client();
-    clip.setText($('#results').text());
-    clip.setHandCursor( true );
-    clip.glue( 'd_clip_button', 'd_clip_container' );
-
+    
   });
+
+  function copyToClipboard() {
+    let text = $('#results').text();
+    navigator.clipboard.writeText(text);
+  }
 
 </script>
