@@ -38,7 +38,7 @@
   });
 
   function copyToClipboard() {
-    let text = $('#results').text();
+    let text = $('#results')[0].innerHTML.replaceAll('<br>', '\n').replaceAll('&nbsp;', ' ');
     navigator.clipboard.writeText(text);
   }
 
